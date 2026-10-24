@@ -1,3 +1,4 @@
+
 name: Build Windows Installer
 
 on:
@@ -43,6 +44,11 @@ jobs:
       - name: Install Frontend Dependencies
         working-directory: ./wsm-app
         run: npm install
+
+      # مرحله جدید: ساخت یک فایل خالی .htaccess تا Vite خطا ندهد
+      - name: Create dummy .htaccess
+        working-directory: ./wsm-app
+        run: New-Item -ItemType File -Force -Path .htaccess
 
       - name: Build Frontend
         working-directory: ./wsm-app
